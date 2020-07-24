@@ -41,6 +41,7 @@ public class SyncWrite {
 
     private Response doWriteAndSync(final Channel channel, final Request request, final long timeout, final WriteFuture<Response> writeFuture) throws Exception {
 
+        //发送请求
         channel.writeAndFlush(request).addListener(new ChannelFutureListener() {
             public void operationComplete(ChannelFuture future) {
                 writeFuture.setWriteResult(future.isSuccess());
@@ -52,6 +53,7 @@ public class SyncWrite {
             }
         });
 
+        //等待返回时间，
         Response response = writeFuture.get(timeout, TimeUnit.MILLISECONDS);
         if (response == null) {
             if (writeFuture.isTimeout()) {

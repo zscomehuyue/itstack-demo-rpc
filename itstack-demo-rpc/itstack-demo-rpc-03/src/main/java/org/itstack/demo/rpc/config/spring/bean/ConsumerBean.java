@@ -15,6 +15,7 @@ import org.springframework.util.Assert;
 /**
  * http://www.itstack.org
  * create by fuzhengwei on 2019/5/6
+ * todo 建立socket连接，使用代理后到执行的结果；
  */
 public class ConsumerBean<T> extends ConsumerConfig<T> implements FactoryBean {
 
@@ -43,7 +44,6 @@ public class ConsumerBean<T> extends ConsumerConfig<T> implements FactoryBean {
             }
         }
         Assert.isTrue(null != channelFuture);
-
         Request request = new Request();
         request.setChannel(channelFuture.channel());
         request.setNozzle(nozzle);
