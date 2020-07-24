@@ -35,6 +35,7 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
             Response request = new Response();
             request.setRequestId(msg.getRequestId());
             request.setResult(result);
+            //todo 该方法是线程安全的吗？异步如何实现？
             ctx.writeAndFlush(request);
             //释放
             ReferenceCountUtil.release(msg);
